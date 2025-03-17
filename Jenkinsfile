@@ -1,24 +1,22 @@
 pipeline {
     agent any
-
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/pragnasrichennur/jenkins-pipeline-test.git'
+                git 'https://github.com/pragnasrichennur/jenkins-pipeline-test.git'
             }
         }
-
         stage('Build') {
             steps {
-                echo 'Building the project...'
+                sh 'mvn clean install'
             }
         }
-
         stage('Test') {
             steps {
-                echo 'Running tests...'
+                sh 'mvn test'
             }
         }
     }
 }
+
 
